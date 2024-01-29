@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/m-mohammad25.github.io/Blog-App-Using-React-and-Firebase/static/css/main.91a37ac8.css",
-    "main.js": "/m-mohammad25.github.io/Blog-App-Using-React-and-Firebase/static/js/main.9ef45eaa.js",
-    "index.html": "/m-mohammad25.github.io/Blog-App-Using-React-and-Firebase/index.html",
-    "main.91a37ac8.css.map": "/m-mohammad25.github.io/Blog-App-Using-React-and-Firebase/static/css/main.91a37ac8.css.map",
-    "main.9ef45eaa.js.map": "/m-mohammad25.github.io/Blog-App-Using-React-and-Firebase/static/js/main.9ef45eaa.js.map"
+    "main.css": "/Blog-App-Using-React-and-Firebase/static/css/main.91a37ac8.css",
+    "main.js": "/Blog-App-Using-React-and-Firebase/static/js/main.bc644462.js",
+    "index.html": "/Blog-App-Using-React-and-Firebase/index.html",
+    "main.91a37ac8.css.map": "/Blog-App-Using-React-and-Firebase/static/css/main.91a37ac8.css.map",
+    "main.bc644462.js.map": "/Blog-App-Using-React-and-Firebase/static/js/main.bc644462.js.map"
   },
   "entrypoints": [
     "static/css/main.91a37ac8.css",
-    "static/js/main.9ef45eaa.js"
+    "static/js/main.bc644462.js"
   ]
 }
