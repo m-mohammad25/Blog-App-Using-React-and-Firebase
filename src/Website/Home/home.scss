@@ -1,0 +1,13 @@
+div.home-page {
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1rem;
+  background-color: $bg-light;
+}
+
+html[data-bs-theme="dark"] div.home-page {
+  background-color: unset;
+}

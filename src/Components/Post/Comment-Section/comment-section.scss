@@ -1,0 +1,21 @@
+section.comment-sect {
+  form {
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+    margin-bottom: 1.5rem;
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.25rem 0.5rem;
+    }
+    .send-btn {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 15px;
+    }
+  }
+}

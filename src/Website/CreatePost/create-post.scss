@@ -1,0 +1,55 @@
+div.create-post-page {
+  height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  form.post-form {
+    background-color: #ffdee9;
+    background-image: linear-gradient(1deg, #ffdee9 15%, #b5fffc);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // align-items: center;
+    row-gap: 1rem;
+    padding: 15px;
+    border-radius: 16px;
+    width: 70%;
+    max-width: 500px;
+
+    .form-title {
+      text-align: center;
+      color: $title-gray;
+    }
+    div.input-wrapper {
+      display: flex;
+      flex-direction: column;
+      label {
+        color: $title-gray;
+        font-weight: bold;
+      }
+      input,
+      textarea {
+        outline: 0;
+        padding: 5px;
+      }
+    }
+
+    button.submit {
+      border: 0;
+      border-radius: 12px;
+      font-weight: bolder;
+      padding: 10px 12px;
+      background-color: #b5fffc;
+      color: #585858;
+      transition: 0.3s;
+      margin-left: auto;
+      margin-right: auto;
+      &:hover {
+        background-color: #58bdb9;
+        color: white;
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+.options-btn {
+  //   cursor: pointer;
+  position: relative;
+}
+.options-menu {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  height: fit-content;
+  z-index: 5;
+  //   bottom: -110%;
+  // transform: translateY(100%);
+  background-color: white;
+  width: fit-content;
+  border: 1px solid $title-gray;
+  border-radius: 5px;
+  .option {
+    padding: 5px 10px;
+    width: 100%;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    .icon {
+      margin-right: 5px;
+    }
+  }
+  hr {
+    margin: 5px 0;
+  }
+  .delete-btn {
+    color: tomato;
+  }
+}
