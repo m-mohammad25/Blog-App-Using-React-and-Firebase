@@ -54,7 +54,7 @@ export default function CommentSection(props) {
               id={index}
               postDoc={props.postDoc}
               isOptionsBtnActive={
-                comment.commenterId === auth.currentUser.uid &&
+                comment.commenterId === auth?.currentUser.uid &&
                 authContext.isAuth === true
               }
               commenterImg={comment.commenterImg}
