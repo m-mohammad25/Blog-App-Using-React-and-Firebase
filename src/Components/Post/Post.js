@@ -3,6 +3,7 @@ import {
   faTrash,
   faEllipsisVertical,
   faHeart as faHeartSolid,
+  faComment as faCommentSolid,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faComment,
@@ -29,6 +30,8 @@ export default function Post(props) {
   const [isCommentSectionShown, setIsCommentSectionShown] = useState(false);
   const [isOptionsBtnClicked, setIsOptonsBtnClicked] = useState(false);
   const [isPostLiked, setIsPostLiked] = useState(props.inPostLiked);
+  const [likesCount, setLikesCount] = useState(props.likesCount);
+  const [commentsCount, setCommetsCount] = useState(props.commentsCount);
 
   const navigate = useNavigate();
 
@@ -103,6 +106,17 @@ export default function Post(props) {
           ></div>
           <span>@{props.authorName}</span>
         </h6>
+
+        <div className="info">
+          <div className="like-count">
+            <FontAwesomeIcon icon={faHeartSolid} style={{ color: "red" }} />
+            <span>{likesCount}</span>
+          </div>
+          <div className="comment-count">
+            <FontAwesomeIcon icon={faCommentSolid} />
+            <span>{commentsCount}</span>
+          </div>
+        </div>
 
         <div className="btns">
           <button className="me-2" onClick={(e) => LikePost(e)}>

@@ -19,7 +19,6 @@ export default function CommentSection(props) {
   const authContext = useContext(AuthContext);
   const [commentTxt, setCommentTxt] = useState("");
   const [commentsDisplay, setCommentsDisplay] = useState("");
-  const [commentsCount, setCommetsCount] = useState("");
   // const router = useRouter();
 
   // const fetchComments = async () => {

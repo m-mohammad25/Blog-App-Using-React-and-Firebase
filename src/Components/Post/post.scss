@@ -56,6 +56,20 @@ div.post {
       margin: 0;
       column-gap: 0.5rem;
     }
+    div.info {
+      display: flex;
+      margin-top: 0.2rem;
+      align-items: center;
+      column-gap: 1.2rem;
+      justify-content: flex-end;
+      div {
+        display: flex;
+        column-gap: 0.1rem;
+        align-items: center;
+        span {
+        }
+      }
+    }
     div.btns {
       display: flex;
       justify-content: flex-start;

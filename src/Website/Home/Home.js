@@ -48,6 +48,8 @@ export default function Home() {
           isDeleteBtnActive={isPostAuthor}
           onPostDelete={getPosts}
           inPostLiked={isPostLiked}
+          likesCount={post.likedBy?.length}
+          commentsCount={post.comments?.length}
         />
       </Col>
     );
