@@ -16,10 +16,11 @@ export default function CreatePost() {
   }
 
   const postsCollectionRef = collection(db, "posts");
+  const CommentsCollectionRef = collection(db, "comments");
   const navigate = useNavigate();
   async function submitPostData(e) {
     e.preventDefault();
-    await addDoc(postsCollectionRef, {
+    const postRef = await addDoc(postsCollectionRef, {
       title: createPostForm.title.trim(),
       content: createPostForm.content.trim(),
       author: {
@@ -27,6 +28,11 @@ export default function CreatePost() {
         name: auth.currentUser.displayName,
         img: auth.currentUser.photoURL,
       },
+    });
+
+    await addDoc(CommentsCollectionRef, {
+      postId: postRef.id,
+      comments: [],
     });
     navigate("/");
   }

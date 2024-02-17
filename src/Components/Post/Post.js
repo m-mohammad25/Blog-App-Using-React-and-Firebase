@@ -134,7 +134,9 @@ export default function Post(props) {
         </div>
       </footer>
 
-      {isCommentSectionShown && <CommentSection postDoc={postDoc} />}
+      {isCommentSectionShown && (
+        <CommentSection postDoc={postDoc} postId={props.id} />
+      )}
     </div>
   );
 }

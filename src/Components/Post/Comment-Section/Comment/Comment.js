@@ -1,4 +1,5 @@
-import { arrayRemove, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { db } from "../../../../firebase-config";
 import OptionsBtn from "../../../OptionsBtn/OptionsBtn";
 import CommentUpdate from "./CommentUpdate/CommentUpdate";
 import { useState } from "react";
@@ -7,14 +8,12 @@ export default function Comment(props) {
   const [isUpdateFormActive, setIsUpdateFormActive] = useState(false);
   const deleteComment = async () => {
     try {
-      // console.log(props.postDoc);
-      const postSnapshot = await getDoc(props.postDoc);
-      const { comments } = postSnapshot.data();
-      comments.splice(props.id, 1);
-      // await props.postDoc.update({ comments });
-      await updateDoc(props.postDoc, {
-        comments,
-      });
+      console.log(props.commentId);
+      const docRef = doc(db, "comments", props.commentId);
+      const docSnap = await getDoc(docRef);
+      const { comments } = docSnap.data();
+      comments.splice(props.index, 1);
+      await updateDoc(docRef, { comments });
     } catch (err) {
       console.log(err);
     }
