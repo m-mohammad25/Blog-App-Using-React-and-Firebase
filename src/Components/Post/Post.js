@@ -25,7 +25,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function Post(props) {
   const postDoc = doc(db, "posts", props.id);
-  // postDoc.get().then((x) => console.log(x));
   const authContext = useContext(AuthContext);
   const [isCommentSectionShown, setIsCommentSectionShown] = useState(false);
   const [isOptionsBtnClicked, setIsOptonsBtnClicked] = useState(false);

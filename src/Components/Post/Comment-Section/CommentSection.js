@@ -6,6 +6,7 @@ import {
   arrayUnion,
   collection,
   doc,
+  getDocs,
   onSnapshot,
   query,
   updateDoc,
@@ -20,35 +21,42 @@ export default function CommentSection(props) {
   const [commentTxt, setCommentTxt] = useState("");
   const [commentsDisplay, setCommentsDisplay] = useState("");
   const [commentId, setCommentId] = useState("");
+  const q = query(
+    collection(db, "comments"),
+    where("postId", "==", props.postId)
+  );
+  const getCommentId = async () => {
+    const querySnapshot = await getDocs(q);
+    setCommentId(querySnapshot.docs[0]?.id);
+  };
   useEffect(() => {
-    const q = query(
-      collection(db, "comments"),
-      where("postId", "==", props.postId)
-    );
-    onSnapshot(q, (querySnapshot) => {
-      setCommentId(querySnapshot.docs[0]?.id);
-      console.log(commentId);
+    getCommentId();
+  }, []);
 
+  useEffect(() => {
+    if (!commentId) return;
+    onSnapshot(q, (querySnapshot) => {
       setCommentsDisplay(
-        querySnapshot.docs[0]?.data()?.comments?.map((comment, index) => (
-          <Comment
-            key={index}
-            index={index}
-            // postDoc={props.postDoc}
-            commentId={commentId}
-            isOptionsBtnActive={
-              comment.commenterId === auth?.currentUser.uid &&
-              authContext.isAuth === true
-            }
-            commenterImg={comment.commenterImg}
-            commenterName={comment.commenterName}
-            commentTime={moment(comment.commentTime).fromNow()}
-            commentTxt={comment.commentTxt}
-          />
-        ))
+        querySnapshot.docs[0]
+          ?.data()
+          ?.comments?.map((comment, index) => (
+            <Comment
+              key={index}
+              index={index}
+              commentId={commentId}
+              isOptionsBtnActive={
+                comment.commenterId === auth?.currentUser.uid &&
+                authContext.isAuth === true
+              }
+              commenterImg={comment.commenterImg}
+              commenterName={comment.commenterName}
+              commentTime={moment(comment.commentTime).fromNow()}
+              commentTxt={comment.commentTxt}
+            />
+          ))
       );
     });
-  }, []);
+  }, [commentId]);
 
   async function submitComment(e) {
     e.preventDefault();
@@ -65,6 +73,7 @@ export default function CommentSection(props) {
     await updateDoc(doc(db, "comments", commentId), comment);
     setCommentTxt("");
   }
+
   return (
     <section className="comment-sect">
       {authContext.isAuth && (

@@ -1,21 +1,16 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { getDoc, updateDoc } from "firebase/firestore";
+
 export default function CommentUpdate(props) {
   const [commentTxt, setCommentTxt] = useState(props.commentTxt);
   const updateComment = async () => {
     if (commentTxt === "") return;
     try {
-      // console.log(props.postDoc);
-      const postSnapshot = await getDoc(props.postDoc);
-      const { comments } = postSnapshot.data();
-      //   console.log(comments[props.commentId]);
-      comments[props.commentId].commentTxt = commentTxt;
-      // await props.postDoc.update({ comments });
-      await updateDoc(props.postDoc, {
-        comments,
-      });
+      const comments = await props.fetchCommentsDoc();
+      comments[props.commentIndx].commentTxt = commentTxt;
+
+      await props.updateComment(comments);
       setCommentTxt("");
     } catch (err) {
       console.log(err);

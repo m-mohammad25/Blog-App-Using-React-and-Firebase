@@ -6,18 +6,32 @@ import { useState } from "react";
 
 export default function Comment(props) {
   const [isUpdateFormActive, setIsUpdateFormActive] = useState(false);
-  const deleteComment = async () => {
+  const docRef = doc(db, "comments", props.commentId);
+
+  const fetchCommentsDoc = async () => {
     try {
-      console.log(props.commentId);
-      const docRef = doc(db, "comments", props.commentId);
       const docSnap = await getDoc(docRef);
       const { comments } = docSnap.data();
-      comments.splice(props.index, 1);
-      await updateDoc(docRef, { comments });
+      // console.log(comments);
+      return comments;
     } catch (err) {
       console.log(err);
     }
   };
+
+  const updateComment = async (comments) => {
+    await updateDoc(docRef, { comments });
+  };
+  const deleteComment = async () => {
+    try {
+      const comments = await fetchCommentsDoc();
+      comments.splice(props.index, 1);
+      await updateComment(comments);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="comment  d-flex justify-content-between">
       <div
@@ -34,15 +48,15 @@ export default function Comment(props) {
         {isUpdateFormActive && (
           <CommentUpdate
             commentTxt={props.commentTxt}
-            commentId={props.id}
+            commentId={props.commentId}
+            commentIndx={props.index}
             postDoc={props.postDoc}
+            fetchCommentsDoc={fetchCommentsDoc}
+            updateComment={updateComment}
             setIsUpdateFormActive={setIsUpdateFormActive}
           />
         )}
       </div>
-      {/* <div className="d-flex flex-column justify-content-between"> */}
-      {/* <button>dd</button> */}
-      {/* </div> */}
 
       {props.isOptionsBtnActive && !isUpdateFormActive && (
         <OptionsBtn
