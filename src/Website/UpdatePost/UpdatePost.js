@@ -48,7 +48,11 @@ export default function UpdatePost() {
     await updateDoc(docRef, {
       title: updatePostForm.title.trim(),
       content: updatePostForm.content.trim(),
-      author: { id: auth.currentUser.uid, name: auth.currentUser.displayName },
+      author: {
+        id: auth.currentUser.uid,
+        name: auth.currentUser.displayName,
+        img: auth.currentUser.photoURL,
+      },
     });
     navigate("/");
   }
